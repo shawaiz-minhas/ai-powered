@@ -1,0 +1,227 @@
+@import "./variables";
+$text-transition-duration: 1s;
+// _functions.scss
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background-color: $bg-black;
+  color: #333;
+}
+
+h2 {
+  font-size: toRem(32);
+}
+
+//heading-style
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: toRem(16) toRem(32);
+  background-color: $bg-black;
+  .content {
+    display: flex;
+    align-items: center;
+    .logo-section {
+      width: toRem(160);
+      height: toRem(36);
+      &:hover {
+        scale: 1.1;
+        transition: all 0.3s ease-in-out;
+      }
+      img {
+        filter: grayscale(100%) invert(100%) brightness(2);
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .sidenav {
+    }
+  }
+  .nav {
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      .nav-item {
+        margin-right: toRem(25);
+        .nav-link {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: $white;
+          font-size: toRem(16);
+          font-weight: 400;
+          text-decoration: none;
+          transition: transform 4s;
+          &:hover {
+            color: $white;
+            opacity: 0.7;
+            transition: transform 0.4s ease-in-out;
+            text-decoration: none;
+            img {
+              transition: transform 0.4s ease-in-out;
+              transform: rotateX(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.main-banner {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10rem auto 0;
+  width: 100%;
+  align-items: center;
+  z-index: 0;
+  position: relative;
+  .title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      color: white;
+      font-size: toRem(104);
+      font-weight: 600;
+    }
+    .glow-bg-2 {
+      transform-origin: center center;
+      background-image: linear-gradient(
+        to right top,
+        #fd1e00,
+        #fd4900,
+        #e68b45,
+        #f55195,
+        #ff6188,
+        #f7ce17,
+        #ff965b,
+        #f5b255,
+        #e1cd60
+      );
+      position: absolute;
+      left: 50%;
+      border-radius: 20px;
+      transform: skewY(-15deg) translate(-50%, -50%) scale(0.7) translateZ(0);
+      pointer-events: none;
+      width: 900px;
+      height: 500px;
+      filter: blur(100px);
+      opacity: 0.4;
+      top: 0;
+      transition: filter 0.25s ease-in-out, opacity 0.25s ease-in-out;
+      &:hover {
+        transition: opacity 0.25s ease-in-out;
+        opacity: 0.5;
+      }
+    }
+    &:hover {
+      .glow-bg-2 {
+        transition: opacity 0.25s ease-in-out;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+#text {
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity $text-transition-duration ease;
+
+  &.fade-out {
+    opacity: 0;
+  }
+
+  &.fade-in {
+    opacity: 1;
+  }
+}
+
+.top--nav--tabs {
+  margin-top: toRem(48);
+  .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      width: toRem(180);
+      height: toRem(80);
+      text-align: center;
+      display: flex;
+      margin-right: toRem(10);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: toRem(16);
+      border-radius: toRem(10);
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover,
+      &.active {
+        background-color: rgba(255, 255, 255, 0.08);
+
+        a {
+          color: $white;
+          font-weight: 500;
+
+          img {
+            opacity: 1;
+          }
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: toRem(5);
+        padding: toRem(8) toRem(16);
+        color: rgb(204, 204, 204);
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+
+        &:hover {
+          color: $white;
+        }
+
+        img {
+          width: toRem(20);
+          height: toRem(20);
+          opacity: 0.5;
+          transition: opacity 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+  .tab-content {
+    margin-top: toRem(60);
+    .tab-pane {
+      video {
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}
